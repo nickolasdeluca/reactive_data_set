@@ -11,24 +11,15 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout source
-        uses: actions/checkout@v3
+      - name: Clone repository    
+        uses: actions/checkout@v4
 
-      - name: Set up Flutter
+      - name: Set up Flutter    
         uses: subosito/flutter-action@v2
         with:
-          flutter-version: stable
-
-      - name: Cache Flutter pub packages
-        uses: actions/cache@v3
-        with:
-          path: |
-            ~/.pub-cache
-          key: ${{ runner.os }}-pub-${{ hashFiles('**/pubspec.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-pub-
-
-      - name: Install dependencies
+          channel: stable
+    
+      - name: Get dependencies
         run: flutter pub get
 
       - name: Run tests
