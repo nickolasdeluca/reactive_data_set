@@ -1,6 +1,6 @@
 name: reactive_data_set
 description: "A Reactive Data Manager for Flutter and Dart inspired by Delphi's TDataSet."
-version: 0.0.1
+version: 0.0.2
 homepage: https://github.com/nickolasdeluca/reactive_data_set
 repository: https://github.com/nickolasdeluca/reactive_data_set
 issue_tracker: https://github.com/nickolasdeluca/reactive_data_set/issues

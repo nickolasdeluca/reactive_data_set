@@ -6,3 +6,7 @@
 * Supports in-memory storage of generic data.
 * Built-in sorting, filtering, insert, update, delete.
 * Integrated `ValueNotifier` for reactive Flutter UI support.
+
+## 0.0.2
+
+* Added example
