@@ -12,7 +12,8 @@ A simple yet powerful in-memory data manager for Flutter, inspired by Delphi's `
 - 🔄 Reactive UI updates using `ValueNotifier<List<T>>`
 - 🧹 Non-destructive filtering and sorting
 - ➕ Insert, ✏️ update, ❌ delete, 🔁 reset, 🧽 clear operations
-- 🔒 Maintains original data intact while presenting filtered/sorted views
+- � Safe data querying with `getByIndex`, `getWhere`, and `getFirstWhere`
+- �🔒 Maintains original data intact while presenting filtered/sorted views
 - 🧩 Native Flutter-only (no external state management required)
 
 ---
@@ -75,6 +76,28 @@ ValueListenableBuilder<List<Person>>(
 
 ---
 
+### 5. Query your data
+
+```dart
+// Get item by index (null-safe)
+Person? person = dataSet.getByIndex(0);
+if (person != null) {
+  print('First person: ${person.name}');
+}
+
+// Get all items matching a condition
+List<Person> adults = dataSet.getWhere((p) => p.age >= 18);
+print('Found ${adults.length} adults');
+
+// Get first item matching a condition
+Person? youngest = dataSet.getFirstWhere((p) => p.age < 30);
+if (youngest != null) {
+  print('Youngest person under 30: ${youngest.name}');
+}
+```
+
+---
+
 ## ⚙️ API Overview
 
 ```dart
@@ -93,9 +116,12 @@ void filter(bool Function(T) predicate)
 void reset()
 void clear()
 
-// Access
+// Data Access
 List<T> get data
 ValueNotifier<List<T>> get dataListenable
+T? getByIndex(int index)
+List<T> getWhere(bool Function(T) predicate)
+T? getFirstWhere(bool Function(T) predicate)
 ```
 
 ---

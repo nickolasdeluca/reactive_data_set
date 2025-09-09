@@ -27,6 +27,29 @@ class ReactiveDataSet<T> extends ChangeNotifier {
   /// Returns an unmodifiable view of the current working data.
   List<T> get data => List.unmodifiable(_workingData);
 
+  /// Retrieves the item at the specified [index] from the working data.
+  /// Returns null if the index is out of bounds.
+  T? getByIndex(int index) {
+    if (index < 0 || index >= _workingData.length) return null;
+    return _workingData[index];
+  }
+
+  /// Retrieves all items from the working data that satisfy the given [predicate].
+  /// Returns an empty list if no items match the condition.
+  List<T> getWhere(bool Function(T item) predicate) {
+    return _workingData.where(predicate).toList();
+  }
+
+  /// Retrieves the first item from the working data that satisfies the given [predicate].
+  /// Returns null if no item matches the condition.
+  T? getFirstWhere(bool Function(T item) predicate) {
+    try {
+      return _workingData.firstWhere(predicate);
+    } catch (e) {
+      return null;
+    }
+  }
+
   /// Adds a new item to both the original and working datasets.
   void insert(T item) {
     _originalData.add(item);
